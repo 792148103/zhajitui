@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册页面</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 225px; }
+        /* 字体；body到边缘的距离 */
+        input { margin: 10px 0; }
+        /* 各个元素外边距离 */
+    </style>
+</head>
+<body>
+    <h2>注册</h2>
+    <form id="registerForm" action="register.php" method="post" novalidate>
+        <!-- form表单区域，包裹内容统一管理 -->
+
+         <label>用户名:<input type="text" id="newUsername" name="newUsername" required></label><br>
+        <!-- 文本框——输入用户名（仅为单行） -->
+         <!-- 1111.这里用label标签第一种用法直接包含，使用户点击“用户名”时即可进入用户名输入 -->
+         <!-- id="newUsername": 这部分为输入字段指定了一个唯一的标识符（ID）
+          name="newUsername": name属性定义了输入字段的名称，这个名称在表单提交时会被发送到服务器
+          required表示必须要有输入值-->
+        <label for="newPassword">密  码:</label>
+        <!-- 2222.这里的第二种label标签，可以使用户再点击“用户名”时就可以进行用户名输入
+         同时使用for和id值相同进行连接 -->
+        <input type="password" id="newPassword" name="newPassword" required><br>
+        <input type="submit" value="注册">
+        <!-- submit -->
+    </form>
+    <p>已有账户？ <a href="login.html" target="_blank">登录</a></p>
+    <!-- href 超链接，跳转网页，target="_blank"跳转时打开新网页-->
+
+    <script>
+        document.getElementById('registerForm').onsubmit = function(event) {
+            event.preventDefault(); // 阻止表单提交
+
+            const newUsername = document.getElementById('newUsername').value;
+            const newPassword = document.getElementById('newPassword').value;
+
+            // 检查用户名和密码是否为空
+            if (newUsername === "" || newPassword === "") {
+                alert("用户名和密码不能为空！");
+                return;
+            }
+
+            alert("注册成功！");
+            // 注册成功后可以跳转到登录页面
+            window.location.href = "login.html"; // 跳转到登录页面
+        }
+    </script>
+</body>
+</html>
